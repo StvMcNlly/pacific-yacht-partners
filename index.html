@@ -253,24 +253,10 @@
 
   function loop() { step(); draw(); requestAnimationFrame(loop); }
 
-  function ambient() {
-    if (cols && rows) {
-      const x = Math.floor(Math.random()*(cols-2))+1;
-      const y = Math.floor(Math.random()*(rows-2))+1;
-      buf0[idx(x,y)] += (Math.random()-0.5) * 1.6;
-    }
-    setTimeout(ambient, 600 + Math.random()*1600);
-  }
-
   window.disturb = disturb;
-  document.addEventListener('mousemove', e => disturb(e.clientX, e.clientY, 2.6));
-  document.addEventListener('click',     e => disturb(e.clientX, e.clientY, 10));
-  document.addEventListener('touchmove', e => {
-    for (const t of e.touches) disturb(t.clientX, t.clientY, 3.2);
-  }, { passive: true });
   window.addEventListener('resize', resize);
 
-  resize(); ambient(); loop();
+  resize(); loop();
 })();
 
 // ── ENTRANCE SEQUENCE ──
